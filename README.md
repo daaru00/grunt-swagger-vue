@@ -11,14 +11,13 @@ fork of [swagger-vue](https://github.com/chenweiqun/swagger-vue)
 
 ### Installation
 ```bash
-npm install grunt-swagger-vue --dev
+npm install grunt-swagger-vue --save-dev
 ```
 ### Configuration
 
 ```javascript
   grunt.initConfig({
-    'pkg': grunt.file.readJSON('package.json'),
-    'grunt-swagger-vue': {
+    'swagger-vue': {
       options: {
         swagger: "client/swagger.json",
         className: "API",
@@ -56,7 +55,7 @@ module.exports = function(grunt) {
 
   grunt.initConfig({
     'pkg': grunt.file.readJSON('package.json'),
-    'grunt-swagger-vue': {
+    'swagger-vue': {
       options: {
         swagger: "<%= pkg.swagger.definition %>",
         className: "<%= pkg.swagger.className %>",
@@ -70,8 +69,7 @@ module.exports = function(grunt) {
   });
 
   grunt.loadNpmTasks('grunt-swagger-vue');
-
-  grunt.registerTask('vue', ['swagger-vue-codegen']);
+  grunt.registerTask('vue', ['swagger-vue']);
 
 };
 ```

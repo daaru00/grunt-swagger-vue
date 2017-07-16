@@ -1,15 +1,18 @@
 {
   "author": {
-    "name": "Fabio Gollinucci <fbgolly@gmail.com>"
+    "name": "Fabio Gollinucci",
+    "email": "fbgolly@gmail.com"
   },
   "bugs": {
     "url": "https://github.com/daaru00/grunt-swagger-vue/issues"
   },
+  "bundleDependencies": false,
   "dependencies": {
     "handlebars": "^4.0.6",
     "js-beautify": "^1.6.12",
     "lodash": "^4.17.4"
   },
+  "deprecated": false,
   "description": "Swagger Codegen for Vue.js",
   "devDependencies": {},
   "homepage": "https://github.com/daaru00/grunt-swagger-vue#readme",
@@ -21,7 +24,7 @@
     "grunt"
   ],
   "license": "MIT",
-  "main": "index.js",
+  "main": "./tasks/swagger-vue.js",
   "name": "grunt-swagger-vue",
   "repository": {
     "type": "git",
