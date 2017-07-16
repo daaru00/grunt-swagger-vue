@@ -78,8 +78,31 @@ Execute in terminal
 grunt vue
 ```
 
+## Generated client's usage
+
+In Vue.js main file set API domain
+```javascript
+import { setDomain } from './lib/vue-api-client.js'
+setDomain('http://localhost:3000/api')
+```
+
+Import API models into Vue.js component, for example import user model and use login method to generate a new token
+```javascript
+import { user as user } from '../lib/vue-api-client.js'
+
+user.login({
+  credentials: {
+    username: 'admin',
+    password: 'admin'
+  }
+}).then(function (response) {
+  console.log(response.data) // {id: "<token>", ttl: 1209600, created: "2017-01-01T00:00:00.000Z", userId: 1}
+})
+```
+All requests use [axinos](https://www.npmjs.com/package/axios) module returning a promise, for more information about that follow axios documentation
+
 ## Notes
-Only compatible with Swagger v2
+Code generator is only compatible with Swagger v2 and generated client is exported in ES6
 
 ## Links
 - [swagger-vue](https://github.com/chenweiqun/swagger-vue)

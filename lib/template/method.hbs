@@ -55,14 +55,14 @@ if(parameters.$queryParameters) {
 }
 
     return request('{{toLowerCase method}}', domain + path, body, queryParameters, form, config)
-}
+},
 
 {{&name}}_RAW_URL: function () {
   return '{{&path}}'
-}
+},
 {{&name}}_TYPE: function () {
   return '{{toLowerCase method}}'
-}
+},
 {{&name}}URL: function(parameters = {}){
     let queryParameters = {}
     const domain = parameters.$domain ? parameters.$domain : getDomain()
@@ -86,4 +86,4 @@ if(parameters.$queryParameters) {
 
     let keys = Object.keys(queryParameters)
     return domain + path + (keys.length > 0 ? '?' + (keys.map(key => key + '=' + encodeURIComponent(queryParameters[key])).join('&')): '')
-}
+},
