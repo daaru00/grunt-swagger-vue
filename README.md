@@ -20,7 +20,7 @@ npm install grunt-swagger-vue --save-dev
     'swagger-vue': {
       options: {
         swagger: "client/swagger.json",
-        className: "API",
+        className: "MyClassName",
         moduleName: "vue-api-client",
         dest: 'client/javascript'
       },
