@@ -44,7 +44,7 @@ Add in your package.json
 ...
   "swagger": {
     "definition": "client/swagger.json",
-    "className": "API",
+    "className": "MyClassName",
     "moduleName": "api-client"
   }
 ...
