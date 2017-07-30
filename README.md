@@ -80,15 +80,17 @@ grunt vue
 
 ## Generated client's usage
 
-In Vue.js main file set API domain
+In Vue.js main file initialize the API plugin with domain param.
 ```javascript
-import { setDomain } from './lib/vue-api-client.js'
-setDomain('http://localhost:3000/api')
+import MyClassName from './lib/vue-api-client.js'
+Vue.use(MyClassName, {
+  domain: 'http://localhost:3000/api'
+})
 ```
 
-Import API models into Vue.js component, for example import user model and use login method to generate a new token
+Import API models into Vue.js component, for example import user model and use login method to generate a new token.
 ```javascript
-import { user as user } from '../lib/vue-api-client.js'
+import { AccessToken, user } from '../lib/vue-api-client.js'
 
 user.login({
   credentials: {
@@ -97,8 +99,20 @@ user.login({
   }
 }).then(function (response) {
   console.log(response.data) // {id: "<token>", ttl: 1209600, created: "2017-01-01T00:00:00.000Z", userId: 1}
+}).catch(function (error) {
+  console.log(error.response.data) // your error response
 })
 ```
+Then set the Authorization header for all future request.
+```javascript
+var token = response.data
+AccessToken.set(token) // now access token is set
+```
+You can also clear it for logout purpose
+```javascript
+AccessToken.clear() // Authorization header is now empty
+```
+
 All requests use [axinos](https://www.npmjs.com/package/axios) module returning a promise, for more information about that follow axios documentation
 
 ## Notes

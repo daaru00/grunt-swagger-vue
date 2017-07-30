@@ -10,8 +10,7 @@
 */
 
 {{&name}}: function(parameters = {}) {
-    const domain = parameters.$domain ? parameters.$domain : getDomain()
-    const config = parameters.$config
+    const config = parameters
     let path = '{{&path}}'
     let body
     let queryParameters = {}
@@ -48,42 +47,11 @@
 
 {{/parameters}}
 
-if(parameters.$queryParameters) {
-    Object.keys(parameters.$queryParameters).forEach(function(parameterName){
-        queryParameters[parameterName] = parameters.$queryParameters[parameterName]
-    });
-}
+  if(parameters.$queryParameters) {
+      Object.keys(parameters.$queryParameters).forEach(function(parameterName){
+          queryParameters[parameterName] = parameters.$queryParameters[parameterName]
+      });
+  }
 
-    return request('{{toLowerCase method}}', domain + path, body, queryParameters, form, config)
-},
-
-{{&name}}_RAW_URL: function () {
-  return '{{&path}}'
-},
-{{&name}}_TYPE: function () {
-  return '{{toLowerCase method}}'
-},
-{{&name}}URL: function(parameters = {}){
-    let queryParameters = {}
-    const domain = parameters.$domain ? parameters.$domain : getDomain()
-    let path = '{{&path}}'
-    {{#parameters}}
-        {{#isQueryParameter}}
-            if(parameters['{{&camelCaseName}}'] !== undefined){
-                queryParameters['{{&name}}'] = parameters['{{&camelCaseName}}']
-            }
-        {{/isQueryParameter}}
-        {{#isPathParameter}}
-            path = path.replace('{{brackets name}}', `${parameters['{{&camelCaseName}}']}`)
-        {{/isPathParameter}}
-    {{/parameters}}
-
-    if(parameters.$queryParameters) {
-        Object.keys(parameters.$queryParameters).forEach(function(parameterName) {
-            queryParameters[parameterName] = parameters.$queryParameters[parameterName]
-        })
-    }
-
-    let keys = Object.keys(queryParameters)
-    return domain + path + (keys.length > 0 ? '?' + (keys.map(key => key + '=' + encodeURIComponent(queryParameters[key])).join('&')): '')
+  return request('{{toLowerCase method}}', options.domain + path, body, queryParameters, form, config)
 },

@@ -1,13 +1,26 @@
 /* eslint-disable */
 import axios from 'axios'
 import qs from 'qs'
-let domain = ''
-export const getDomain = () => {
-  return domain
-}
-export const setDomain = ($domain) => {
-  domain = $domain
-}
+let options = {}
+
+const {{&className}} = {
+  install(Vue, opts) {
+    options = opts
+  }
+};
+
+export default {{&className}};
+
+export const AccessToken = {
+  set (token) {
+    axios.defaults.headers.common['Authorization'] = token;
+    console.log(axios.defaults.headers);
+  },
+  clear () {
+    axios.defaults.headers.common['Authorization'] = null;
+  }
+};
+
 export const request = (method, url, body, queryParameters, form, config)=>{
   method = method.toLowerCase()
   let keys = Object.keys(queryParameters)
